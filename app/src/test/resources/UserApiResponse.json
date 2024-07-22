@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Roman",
+    "email": "rpenburton0@yellowbook.com",
+    "avatar": "https://dummyimage.com/100x100.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 2,
+    "name": "Tracey",
+    "email": "tvidgeon1@nifty.com",
+    "avatar": "https://dummyimage.com/100x100.png/5fa2dd/ffffff"
+  }
+]
