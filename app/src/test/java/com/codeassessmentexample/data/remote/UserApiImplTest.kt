@@ -1,23 +1,13 @@
 package com.codeassessmentexample.data.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.codeassessmentexample.data.remote.fakedata.FakeUserData
-import com.codeassessmentexample.data.remote.utils.MockResponseFileReader
-import com.codeassessmentexample.remote.UserApiImpl
-import com.codeassessmentexample.remote.api.UserApiService
-import com.codeassessmentexample.remote.modelDTO.UserModel
+import com.codeassessmentexample.data.remote.api.UserApiService
 import com.codeassessmentexample.utils.CoroutineScopeRule
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
-import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Assert
@@ -32,7 +22,6 @@ import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.concurrent.TimeUnit
 
 
 @ExperimentalCoroutinesApi

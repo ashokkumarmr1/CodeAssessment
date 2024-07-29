@@ -1,7 +1,7 @@
 package com.codeassessmentexample.local.fakes
 
 import com.codeassessmentexample.domain.model.User
-import com.codeassessmentexample.local.model.UserEntity
+import com.codeassessmentexample.data.local.model.UserEntity
 
 object FakeUserData {
 

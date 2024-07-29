@@ -1,6 +1,6 @@
 package com.codeassessmentexample.presentation.viewmodel
 
-import com.codeassessmentexample.common.Resource
+import com.codeassessmentexample.common.core.Resource
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 
@@ -10,8 +10,8 @@ import org.junit.Test
 import org.mockito.Mock
 import com.codeassessmentexample.utils.CoroutineScopeRule
 import com.codeassessmentexample.domain.model.User
-import com.codeassessmentexample.domain.usecase.UserUseCase
-import com.codeassessmentexample.presentation.viewmodel.MainViewModel
+import com.codeassessmentexample.domain.usecase.user.UserListUseCase
+import com.codeassessmentexample.domain.usecase.user.UserSaveUseCase
 import com.codeassessmentexample.presentation.fakes.FakeUserData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -36,13 +36,15 @@ class MainViewModelTest
     val testDispatcher = StandardTestDispatcher()
 
     @Mock
-    lateinit var  useCase: UserUseCase
+    lateinit var  userListUseCase: UserListUseCase
+    @Mock
+    lateinit var userSaveUseCase: UserSaveUseCase
     private lateinit var viewModel: MainViewModel
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        viewModel = MainViewModel(testDispatcher,useCase)
+        viewModel = MainViewModel(testDispatcher,userListUseCase, userSaveUseCase)
     }
 
 
@@ -51,14 +53,14 @@ class MainViewModelTest
 
         //Arrange (Given)
          val testValue = FakeUserData.getUser()
-        `when`(useCase.getUsers()).thenReturn(flow {
+        `when`(userListUseCase.getUsers()).thenReturn(flow {
             emit(Resource.Success(testValue)) })
 
         //Act
-        useCase.getUsers()
+        userListUseCase.getUsers()
 
         //Then
-        val result = useCase.getUsers().first().data
+        val result = userListUseCase.getUsers().first().data
         //Assert (Then)
         assertEquals(testValue,result)
     }
@@ -69,14 +71,14 @@ class MainViewModelTest
 
         //Arrange (Given)
         val testValue = FakeUserData.getUser()
-        `when`(useCase.getUsers()).thenReturn(flow {
+        `when`(userListUseCase.getUsers()).thenReturn(flow {
             emit(Resource.Success(testValue)) })
 
         //Act (when)
-        useCase.getUsers()
+        userListUseCase.getUsers()
 
         //Then
-        val result = useCase.getUsers().first().data
+        val result = userListUseCase.getUsers().first().data
         //Assert
         assertEquals(testValue,  result)
     }
@@ -85,14 +87,14 @@ class MainViewModelTest
     fun `when result fetching results failure data then`() = testCoroutineRule.runTest {
         //Arrange (Given)
         val emptyList = listOf<User>()
-        `when`(useCase.getUsers()).thenReturn(flow {
+        `when`(userListUseCase.getUsers()).thenReturn(flow {
             emit(Resource.Error("Throw Exception",emptyList)) })
 
         //Act (when)
-        useCase.getUsers()
+        userListUseCase.getUsers()
 
         //Then
-        val result = useCase.getUsers().first().message
+        val result = userListUseCase.getUsers().first().message
         //Assert
         assertEquals("Throw Exception",  result)
     }
@@ -126,14 +128,14 @@ class MainViewModelTest
     fun `when result fetching results with State success then`() = runBlocking {
         //Arrange (When)
         val testValue = FakeUserData.getUser()
-        `when`(useCase.getUsers()).thenReturn(flow {
+        `when`(userListUseCase.getUsers()).thenReturn(flow {
             emit(Resource.Success(testValue)) })
 
         //Act (when)
-        useCase.getUsers()
+        userListUseCase.getUsers()
 
         //Then
-        val result = useCase.getUsers().first().data
+        val result = userListUseCase.getUsers().first().data
         //Assert
         assertEquals(testValue,result)
     }

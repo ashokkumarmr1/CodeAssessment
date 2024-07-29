@@ -1,6 +1,6 @@
 package com.codeassessmentexample.data.remote
 
-import com.codeassessmentexample.remote.modelDTO.UserModel
+import com.codeassessmentexample.data.remote.modelDTO.UserModel
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.buffer

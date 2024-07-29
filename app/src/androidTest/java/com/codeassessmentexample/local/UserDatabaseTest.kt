@@ -1,13 +1,12 @@
 package com.codeassessmentexample.local
 
 import android.content.Context
-import android.support.test.runner.AndroidJUnit4
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.codeassessmentexample.local.dao.UserDAO
-import com.codeassessmentexample.local.database.UserDatabase
+import com.codeassessmentexample.data.local.dao.UserDAO
+import com.codeassessmentexample.data.local.database.UserDatabase
 import com.codeassessmentexample.local.fakes.FakeUserData
-import com.codeassessmentexample.local.mappers.UserEntityMapper
+import com.codeassessmentexample.data.local.mappers.UserEntityMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
